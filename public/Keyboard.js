@@ -43,9 +43,11 @@ function keyboardSelection(value){
 
             case Display6:
                 cancelRequest(value);
+                break;
 
             case Display8:
                 getTextField(value);
+                break;
                 
     }
     
@@ -94,8 +96,8 @@ function processEnterKey(){
                 }
 
                 else if(this.status == 404){
-                    console.log("i got here")
                     document.getElementById("textarea").innerHTML = this.responseText;
+                    clearTextField();
                     setTimeout(()=>{
                         document.getElementById("textarea").innerHTML = Display6;
                     }, 3000)
@@ -112,7 +114,7 @@ function processEnterKey(){
 
         case Display8:
             amount = document.getElementById("textfield").value.toString();
-            processDeposit();
+            processDeposit(amount);
             break;
     }
     

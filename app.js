@@ -28,10 +28,11 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.get("/", function(req, res){
-    switch(req.param('transaction')){
+    
+    switch(req.query.transaction){
         case "validatepin":
-            var pin = parseInt(req.param('pin'));
-            var acctNumber = parseInt(req.param('accountNumber'));
+            var pin = parseInt(req.query.pin);
+            var acctNumber = parseInt(req.query.accountNumber);
             database.Find("Customers", acctNumber).then(
                 function(result){
                     if (result.cardpin == pin){
@@ -46,7 +47,7 @@ app.get("/", function(req, res){
             break;
 
         case "accountbalance":
-            acctNumber = parseInt(req.param('accountNumber'));
+            acctNumber = parseInt(req.query.accountNumber);
             database.Find("Customers", acctNumber).then(
                 function(result){
                     var balance = result.accountBalance.toString();
@@ -56,8 +57,9 @@ app.get("/", function(req, res){
             break;
 
         case "deposit":
-            acctNumber = parseInt(req.param('accountNumber'));
-            amount = parseInt(req.param('amount'));
+            acctNumber = parseInt(req.query.accountNumber);
+            var amount = parseInt(req.query.amount);
+            console.log("this is amount " + amount);
             database.Update("Customers", acctNumber, amount, "deposit");
             setTimeout(function(){
                 res.send("Account Updated")
@@ -65,8 +67,8 @@ app.get("/", function(req, res){
             break;
         
         case "withdrawal":
-            acctNumber = parseInt(req.param('accountNumber'));
-            amount = parseInt(req.param('amount'));
+            acctNumber = parseInt(req.query.accountNumber);
+            amount = parseInt(req.query.amount);
             database.Find("Customers", acctNumber).then(
                 function(result){
                     balance = result.accountBalance;
