@@ -1,0 +1,68 @@
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-sm-offset-4 col-sm-3" style="background-color:pink;" >
+                    <p>{{name}}</p>
+                    <div class="form-group">
+                        <textarea placeholder="This is a textarea" class="form-control" row="12" id="textarea"></textarea>
+                    </div>
+                    <p id="show-result"></p>
+                    <form class="form-group">
+                        <input type="text" id="textfield" value=" " class="form-control">
+                    </form>
+                    <div style="margin-left:50px;">
+                        <div class="keypad">
+                            <button type="button" class="btn btn-primary btn-sm" id="7" onclick="keyboardSelection(7)">7</button>
+                            <button type="button" class="btn btn-primary btn-sm" id ="8" onclick="keyboardSelection(8)">8</button>
+                            <button type="button" class="btn btn-primary btn-sm" id ="9" onclick="keyboardSelection(9)">9</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="clear" onclick="clearTextField()">Clear</button>
+                        </div>
+
+                        <div  class="keypad">
+                            <button type="button" class="btn btn-primary btn-sm" id="4" onclick="keyboardSelection(4)">4</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="5" onclick="keyboardSelection(5)">5</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="6" onclick="keyboardSelection(6)">6</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="cancel" onClick="cancelButton()">Cancel</button>
+                        </div>
+
+                        <div class="keypad">
+                            <button type="button" class="btn btn-primary btn-sm" id="1" onclick="keyboardSelection(1)">1</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="2" onclick="keyboardSelection(2)">2</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="3" onclick="keyboardSelection(3)">3</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="enter" onclick="processEnterKey()">Enter</button>
+                        </div>
+                        <div class="keypad">
+                            <button type="button" class="btn btn-primary btn-sm" id="0" onclick="keyboardSelection(0)">0</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div style="background-color:rgba(228, 135, 128, 0.837); margin: 10px; padding: 8px;">
+                        <p>AcctName: Monday<br/>
+                           AcctNum: 1133567890<br/>
+                           CardPin: 1234
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="requestPin(1133567890)">Insert Card</button>
+                    </div>
+                    <div style="background-color:rgba(135, 233, 129, 0.72); margin: 10px; padding: 8px;">
+                        <p>AcctName: Friday<br/>
+                            AcctNum: 1234567890<br/>
+                            CardPin: 4321
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="requestPin(1234567890)">Insert Card</button>
+                    </div>
+                    <div style="background-color:rgba(132, 135, 232, 0.912); margin: 10px; padding: 8px;">
+                        <p>AcctName: Sunday<br/>
+                            AcctNum: 1231237890<br/>
+                            CardPin: 6789
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="requestPin(1231237890)">Insert Card</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="/sprintf.min.js"></script>
+        <script src ="/Keyboard.js"></script>
+        <script src="/Transaction.js"></script>
+        <script src="/Display.js"></script>
