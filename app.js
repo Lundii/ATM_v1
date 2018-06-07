@@ -59,7 +59,6 @@ app.get("/", function(req, res){
         case "deposit":
             acctNumber = parseInt(req.query.accountNumber);
             var amount = parseInt(req.query.amount);
-            console.log("this is amount " + amount);
             database.Update("Customers", acctNumber, amount, "deposit");
             setTimeout(function(){
                 res.send("Account Updated")
@@ -84,13 +83,22 @@ app.get("/", function(req, res){
                 }
             )
             break;
-
+        
+        case "changePin":
+            var pin = parseInt(req.query.pin);
+            acctNumber = parseInt(req.query.accountNumber);
+            database.UpdatePin("Customers", acctNumber, pin).then(
+                function(result){
+                    res.send("Pin Changed");
+                }
+            )
+            break;
+        
         default:
         res.render('atm', {name: "ATM"});
         //  res.sendFile(__dirname + "/ATMGUI.html");
     }
 });
-
 
 app.listen(2000, function(){
     console.log("Server Started");

@@ -20,6 +20,7 @@ var Display6 = sprintf("%s\n%s\n%s", "Do you want to perform another transaction
                                                    "1. Yes",
                                                    "2. No")
 var Display7 = sprintf("%s", "Please Wait");
-var Display8 = sprintf("%s", "Enter Deposit Amount")
+var Display8 = sprintf("%s", "Enter Deposit Amount");
+var Display9 = sprintf("%s", "Enter New Pin");
                                                    
 document.getElementById("textarea").innerHTML = Display1;

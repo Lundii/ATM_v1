@@ -48,6 +48,9 @@ function keyboardSelection(value){
             case Display8:
                 getTextField(value);
                 break;
+            
+            case Display9:
+                getTextField(value)
                 
     }
     
@@ -116,6 +119,10 @@ function processEnterKey(){
             amount = document.getElementById("textfield").value.toString();
             processDeposit(amount);
             break;
+
+        case Display9:
+            pin = document.getElementById("textfield").value.toString();
+            processChangePin(pin);
     }
     
 }

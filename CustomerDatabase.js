@@ -52,7 +52,6 @@ var Database = function(){
          else{
              dbo.collection(collection).insertMany(data, function(err, result){
                   if(err) throw err;
-                  console.log("Number of document added: " + result.insertedCount);
              });
          }
      };
@@ -81,23 +80,40 @@ var Database = function(){
       * @param {string}  transaction the of update transaction
       */
      this.Update = function(collection, acctNum, newValue, transaction){
-            this.Find(collection, acctNum).then(function(result){
-                var presentBalance = result.accountBalance;
-                var newBalance;
-                if(transaction == "deposit"){
-                    newBalance = presentBalance + newValue;
-                }
-                else{
-                    newBalance = presentBalance - newValue;
-                }
-                var query = {accountNumber: acctNum};
-                var updateValue = {$set:{accountBalance: newBalance}};
-                dbo.collection(collection).updateOne(query, updateValue, function(err, res){
-                    if (err) throw err;
-                    return newBalance;
-                });
-           });
+        this.Find(collection, acctNum).then(function(result){
+            var presentBalance = result.accountBalance;
+            var newBalance;
+            if(transaction == "deposit"){
+                newBalance = presentBalance + newValue;
+            }
+            else{
+                newBalance = presentBalance - newValue;
+            }
+            var query = {accountNumber: acctNum};
+            var updateValue = {$set:{accountBalance: newBalance}};
+            dbo.collection(collection).updateOne(query, updateValue, function(err, res){
+                if (err) throw err;
+                return newBalance;
+            });
+        });
      };
+
+     /**
+      * 
+      * @param {String} collection the database collection
+      * @param {Number} acctNum  the account number of the user
+      * @param {newValue} newValue the new pin value
+      */
+     this.UpdatePin = function(collection, acctNum, newPin){
+         var query = {accountNumber: acctNum};
+         var updateValue = {$set:{cardpin: newPin}};
+         return new Promise((resolve, reject) => {
+             dbo.collection(collection).updateOne(query, updateValue, function(error, result){
+                 if (error) reject(error);
+                 resolve(result);
+             });
+         });
+     }
 };
  
  //exports the module object as Database

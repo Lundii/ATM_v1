@@ -15,7 +15,7 @@ function processSelection(selection){
             document.getElementById("textarea").innerHTML = Display8;
             break;
         case 4:
-            processChangePin();
+            document.getElementById("textarea").innerHTML = Display9;
     }
 }
 
@@ -75,4 +75,18 @@ function processDeposit(DepAmount){
     xhttp.open("GET", `/?transaction=deposit&accountNumber=${acctNumber}&amount=${DepAmount}`, true);
     xhttp.send();
     document.getElementById("textarea").innerHTML = Display7;
+}
+
+function processChangePin(pin){    
+    var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function(){
+         if (this.readyState == 4 && this.status == 200){
+             setTimeout(()=>{
+                 document.getElementById("textarea").innerHTML = this.responseText;
+             }, 3000)
+         }
+     }
+     xhttp.open("GET", `/?transaction=changePin&pin=${pin}&accountNumber=${acctNumber}`, true);
+     xhttp.send();
+     document.getElementById("textarea").innerHTML = Display7;
 }
