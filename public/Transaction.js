@@ -26,7 +26,7 @@ function cancelRequest(value){
                document.getElementById("textarea").innerHTML = Display1;
            }, 3000);
        }
-       else{
+       else if(value == 1){
            document.getElementById("textarea").innerHTML = Display2;
        }
 }
